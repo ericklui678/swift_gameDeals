@@ -12,12 +12,18 @@ import UIKit
 class GameDealsViewController: UITableViewController {
   
   var games = [NSDictionary]()
+  var refresher: UIRefreshControl!
 
   override func viewDidLoad() {
     super.viewDidLoad()
     retrieveAllDeals()
+    
+    refresher = UIRefreshControl()
+    refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
+    refresher.addTarget(self, action: #selector(retrieveAllDeals), for: UIControlEvents.valueChanged)
+    tableView.addSubview(refresher)
   }
-
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
@@ -69,14 +75,16 @@ class GameDealsViewController: UITableViewController {
     }
   }
   
-  func retrieveAllDeals() {
+  @objc func retrieveAllDeals() {
     DealsModel.getAllDeals(completionHandler: {
       data, response, error in
       do {
         if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as? [NSDictionary] {
           self.games = jsonResult
           DispatchQueue.main.async {
+            print("API calling now")
             self.tableView.reloadData()
+            self.refresher.endRefreshing()
           }
         }
       } catch {
