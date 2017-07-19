@@ -64,6 +64,19 @@ class GameDealsViewController: UITableViewController {
     return cell
   }
   
+  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    
+  }
+  
+  override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    let addAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Add") { (action , indexPath ) -> Void in
+      self.isEditing = false
+      print("Add button pressed")
+    }
+    addAction.backgroundColor = UIColor(red: 0, green: 0.6, blue: 0, alpha: 1)
+    return [addAction]
+  }
+  
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let url = URL(string: "http://www.cheapshark.com/redirect?dealID=\(games[indexPath.row]["dealID"]!)")!
     if UIApplication.shared.canOpenURL(url) {
