@@ -11,4 +11,6 @@ import UIKit
 class CustomCell: UITableViewCell {
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var thumbnail: UIImageView!
+  @IBOutlet weak var salePriceLabel: UILabel!
+  @IBOutlet weak var currentPriceLabel: UILabel!
 }
