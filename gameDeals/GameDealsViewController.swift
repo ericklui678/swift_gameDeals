@@ -6,6 +6,7 @@
 //  Copyright © 2017 Erick Lui. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class GameDealsViewController: UITableViewController {
@@ -46,6 +47,11 @@ class GameDealsViewController: UITableViewController {
         currPrice.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 2, range: NSMakeRange(0, currPrice.length))
         cell.currentPriceLabel?.attributedText = currPrice
         
+        if let percent = Double(self.games[indexPath.row]["savings"] as! String) {
+          let percentStr = String(Int(percent.rounded()))
+          cell.percentLabel?.backgroundColor = UIColor(red: 0, green: 0.4, blue: 0, alpha: 1)
+          cell.percentLabel?.text = "\(percentStr)%"
+        }
       })
       
     }).resume()

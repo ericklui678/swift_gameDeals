@@ -13,4 +13,5 @@ class CustomCell: UITableViewCell {
   @IBOutlet weak var thumbnail: UIImageView!
   @IBOutlet weak var salePriceLabel: UILabel!
   @IBOutlet weak var currentPriceLabel: UILabel!
+  @IBOutlet weak var percentLabel: UILabel!
 }
