@@ -27,6 +27,7 @@ class GameDealsViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomCell
+    cell.selectionStyle = .none
     URLSession.shared.dataTask(with: NSURL(string: games[indexPath.row]["thumb"] as! String)! as URL, completionHandler: { (data, response, error) -> Void in
       if error != nil {
         print(error ?? "error")
@@ -37,7 +38,7 @@ class GameDealsViewController: UITableViewController {
         cell.thumbnail.image = UIImage(data: data!)
         cell.titleLabel?.text = self.games[indexPath.row]["title"] as? String
         
-        cell.salePriceLabel.textColor = UIColor(red: 0.5, green: 0.65, blue: 0.5, alpha: 1)
+        cell.salePriceLabel.textColor = UIColor(red: 0, green: 0.4, blue: 0, alpha: 1)
         cell.salePriceLabel?.text = "$\(self.games[indexPath.row]["salePrice"]!)"
         
         let attributes = [NSAttributedStringKey.foregroundColor: UIColor.red]
@@ -49,6 +50,17 @@ class GameDealsViewController: UITableViewController {
       
     }).resume()
     return cell
+  }
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let url = URL(string: "http://www.cheapshark.com/redirect?dealID=\(games[indexPath.row]["dealID"]!)")!
+    if UIApplication.shared.canOpenURL(url) {
+      UIApplication.shared.open(url, options: [:], completionHandler: nil)
+      //If you want handle the completion block than
+      UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+        print("Open url : \(success)")
+      })
+    }
   }
   
   func retrieveAllDeals() {
