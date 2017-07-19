@@ -16,6 +16,11 @@ class WatchListTableViewController: UITableViewController {
     super.viewDidLoad()
     retrieveMyList()
   }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    retrieveMyList()
+  }
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()

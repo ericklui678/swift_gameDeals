@@ -71,7 +71,14 @@ class GameDealsViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
     let addAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Add") { (action , indexPath ) -> Void in
       self.isEditing = false
-      print("Add button pressed")
+      let game_id = self.games[indexPath.row]["gameID"]! as! String
+      let imgURL = self.games[indexPath.row]["thumb"]! as! String
+      let title = self.games[indexPath.row]["title"]! as! String
+      self.addGame(game_id, imgURL, title)
+      
+      let alert = UIAlertController(title: "Success", message: "Game was added to your list", preferredStyle: UIAlertControllerStyle.alert)
+      alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+      self.present(alert, animated: true, completion: nil)
     }
     addAction.backgroundColor = UIColor(red: 0, green: 0.6, blue: 0, alpha: 1)
     return [addAction]
@@ -86,6 +93,19 @@ class GameDealsViewController: UITableViewController {
         print("Open url : \(success)")
       })
     }
+  }
+  
+  func addGame(_ game_id: String, _ imgURL: String, _ title: String) {
+    DealsModel.addGame(game_id: game_id, imgURL: imgURL, title: title, completionHandler: {
+      data, response, error in
+      do {
+        if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as? [NSDictionary] {
+//          print(jsonResult)
+        }
+      } catch {
+        print(error)
+      }
+    })
   }
   
   @objc func retrieveAllDeals() {

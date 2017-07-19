@@ -27,7 +27,7 @@ app.get('/', function(req, res){
   GameDeals.find(function(err, data){
     if(err) {console.log(err);}
     res.send(data);
-  })
+  }).sort({'createdAt': -1})
 })
 // Create
 app.post('/create', function(req, res){

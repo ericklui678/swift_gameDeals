@@ -33,4 +33,16 @@ class DealsModel {
       task.resume()
     }
   }
+  
+  static func addGame(game_id: String, imgURL: String, title: String, completionHandler: @escaping(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
+    if let urlToReq = URL(string: "http://localhost:8000/create") {
+      var request = URLRequest(url: urlToReq)
+      request.httpMethod = "POST"
+      let bodyData = "game_id=\(game_id)&imgURL=\(imgURL)&title=\(title)"
+      request.httpBody = bodyData.data(using: .utf8)
+      let session = URLSession.shared
+      let task = session.dataTask(with: request as URLRequest, completionHandler: completionHandler)
+      task.resume()
+    }
+  }
 }
