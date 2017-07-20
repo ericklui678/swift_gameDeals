@@ -48,10 +48,17 @@ class GameDealsViewController: UITableViewController {
         cell.salePriceLabel.textColor = UIColor(red: 0, green: 0.4, blue: 0, alpha: 1)
         cell.salePriceLabel?.text = "$\(self.games[indexPath.row]["salePrice"]!)"
         
-        let attributes = [NSAttributedStringKey.foregroundColor: UIColor.red]
-        let currPrice = NSMutableAttributedString(string: "$\(self.games[indexPath.row]["normalPrice"]!)", attributes: attributes)
-        currPrice.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 2, range: NSMakeRange(0, currPrice.length))
-        cell.currentPriceLabel?.attributedText = currPrice
+        // Swift 4
+//        let attributes = [NSAttributedStringKey.foregroundColor: UIColor.red]
+//        let currPrice = NSMutableAttributedString(string: "$\(self.games[indexPath.row]["normalPrice"]!)", attributes: attributes)
+//        currPrice.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 2, range: NSMakeRange(0, currPrice.length))
+//        cell.currentPriceLabel?.attributedText = currPrice
+
+        // Swift 3
+        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "$\(self.games[indexPath.row]["normalPrice"]!)")
+        attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
+        cell.currentPriceLabel?.attributedText = attributeString
+        cell.currentPriceLabel?.textColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
         
         if let percent = Double(self.games[indexPath.row]["savings"] as! String) {
           let percentStr = String(Int(percent.rounded()))

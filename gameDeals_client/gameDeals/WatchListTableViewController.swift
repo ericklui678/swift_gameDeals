@@ -54,9 +54,18 @@ class WatchListTableViewController: UITableViewController {
     list.remove(at: indexPath.row)
     tableView.reloadData()
   }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! UINavigationController
+        let nav = destination.topViewController as! GameDetailTableViewController
+        nav.gameID = String(describing: sender!)
+    }
+    
+    
   
   override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
     print("accessory tapped")
+    performSegue(withIdentifier: "GameDetailSegue", sender: list[indexPath.row]["game_id"]!)
   }
   
   func retrieveMyList() {

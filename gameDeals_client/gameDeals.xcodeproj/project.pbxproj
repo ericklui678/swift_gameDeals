@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8CD7C21E1F20336900BE4508 /* GameDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD7C21D1F20336900BE4508 /* GameDetailTableViewController.swift */; };
+		8CD7C2201F20439500BE4508 /* DetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD7C21F1F20439500BE4508 /* DetailsCell.swift */; };
 		F4097B371F2001A700E4983A /* WatchlistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4097B361F2001A700E4983A /* WatchlistCell.swift */; };
 		F4958AA81F1FFEC900DAE7C0 /* WatchListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4958AA71F1FFEC900DAE7C0 /* WatchListTableViewController.swift */; };
 		F4D1CCFB1F1EC34500C25713 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1CCFA1F1EC34500C25713 /* AppDelegate.swift */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8CD7C21D1F20336900BE4508 /* GameDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDetailTableViewController.swift; sourceTree = "<group>"; };
+		8CD7C21F1F20439500BE4508 /* DetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsCell.swift; sourceTree = "<group>"; };
 		F4097B361F2001A700E4983A /* WatchlistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCell.swift; sourceTree = "<group>"; };
 		F4958AA71F1FFEC900DAE7C0 /* WatchListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListTableViewController.swift; sourceTree = "<group>"; };
 		F4D1CCF71F1EC34500C25713 /* gameDeals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gameDeals.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,8 +117,10 @@
 				F4D1CD061F1EC34500C25713 /* Info.plist */,
 				F4F79B6A1F1F1213004FA614 /* DealsModel.swift */,
 				F4F79B6C1F1F167D004FA614 /* CustomCell.swift */,
+				8CD7C21F1F20439500BE4508 /* DetailsCell.swift */,
 				F4097B361F2001A700E4983A /* WatchlistCell.swift */,
 				F4958AA71F1FFEC900DAE7C0 /* WatchListTableViewController.swift */,
+				8CD7C21D1F20336900BE4508 /* GameDetailTableViewController.swift */,
 			);
 			path = gameDeals;
 			sourceTree = "<group>";
@@ -269,6 +275,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4F79B6B1F1F1213004FA614 /* DealsModel.swift in Sources */,
+				8CD7C21E1F20336900BE4508 /* GameDetailTableViewController.swift in Sources */,
+				8CD7C2201F20439500BE4508 /* DetailsCell.swift in Sources */,
 				F4097B371F2001A700E4983A /* WatchlistCell.swift in Sources */,
 				F4958AA81F1FFEC900DAE7C0 /* WatchListTableViewController.swift in Sources */,
 				F4D1CCFD1F1EC34500C25713 /* GameDealsViewController.swift in Sources */,
@@ -435,13 +443,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = DV65A9T5A4;
+				DEVELOPMENT_TEAM = G6RP4M9WGT;
 				INFOPLIST_FILE = gameDeals/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ericklui.gameDeals;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codingdojo.gameDeals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -450,13 +458,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = DV65A9T5A4;
+				DEVELOPMENT_TEAM = G6RP4M9WGT;
 				INFOPLIST_FILE = gameDeals/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ericklui.gameDeals;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codingdojo.gameDeals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -468,6 +476,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = DV65A9T5A4;
 				INFOPLIST_FILE = gameDealsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ericklui.gameDealsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -484,6 +493,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = DV65A9T5A4;
 				INFOPLIST_FILE = gameDealsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ericklui.gameDealsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -499,6 +509,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = DV65A9T5A4;
 				INFOPLIST_FILE = gameDealsUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ericklui.gameDealsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -514,6 +525,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = DV65A9T5A4;
 				INFOPLIST_FILE = gameDealsUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ericklui.gameDealsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
