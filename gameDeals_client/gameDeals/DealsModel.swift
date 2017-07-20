@@ -17,6 +17,20 @@ class DealsModel {
     task.resume()
   }
   
+  static func getAllStores(completionHandler: @escaping(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
+    let url = URL(string: "http://www.cheapshark.com/api/1.0/stores")
+    let session = URLSession.shared
+    let task = session.dataTask(with: url!, completionHandler: completionHandler)
+    task.resume()
+  }
+  
+  static func getGameInfo(gameID: String, completionHandler: @escaping(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
+    let url = URL(string: "http://www.cheapshark.com/api/1.0/games?id=\(gameID)")
+    let session = URLSession.shared
+    let task = session.dataTask(with: url!, completionHandler: completionHandler)
+    task.resume()
+  }
+  
   static func getMyList(completionHandler: @escaping(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
     let url = URL(string: "http://34.213.11.157/")
     let session = URLSession.shared

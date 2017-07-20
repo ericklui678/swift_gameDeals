@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F4097B371F2001A700E4983A /* WatchlistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4097B361F2001A700E4983A /* WatchlistCell.swift */; };
+		F45C5DA61F205BC30082A753 /* InfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45C5DA51F205BC30082A753 /* InfoTableViewController.swift */; };
+		F45C5DA81F2060290082A753 /* InfoCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45C5DA71F2060290082A753 /* InfoCustomCell.swift */; };
 		F4958AA81F1FFEC900DAE7C0 /* WatchListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4958AA71F1FFEC900DAE7C0 /* WatchListTableViewController.swift */; };
 		F4D1CCFB1F1EC34500C25713 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1CCFA1F1EC34500C25713 /* AppDelegate.swift */; };
 		F4D1CCFD1F1EC34500C25713 /* GameDealsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1CCFC1F1EC34500C25713 /* GameDealsViewController.swift */; };
@@ -39,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		F4097B361F2001A700E4983A /* WatchlistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCell.swift; sourceTree = "<group>"; };
+		F45C5DA51F205BC30082A753 /* InfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewController.swift; sourceTree = "<group>"; };
+		F45C5DA71F2060290082A753 /* InfoCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCustomCell.swift; sourceTree = "<group>"; };
 		F4958AA71F1FFEC900DAE7C0 /* WatchListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListTableViewController.swift; sourceTree = "<group>"; };
 		F4D1CCF71F1EC34500C25713 /* gameDeals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gameDeals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4D1CCFA1F1EC34500C25713 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 				F4D1CD061F1EC34500C25713 /* Info.plist */,
 				F4F79B6A1F1F1213004FA614 /* DealsModel.swift */,
 				F4F79B6C1F1F167D004FA614 /* CustomCell.swift */,
+				F45C5DA51F205BC30082A753 /* InfoTableViewController.swift */,
+				F45C5DA71F2060290082A753 /* InfoCustomCell.swift */,
 				F4097B361F2001A700E4983A /* WatchlistCell.swift */,
 				F4958AA71F1FFEC900DAE7C0 /* WatchListTableViewController.swift */,
 			);
@@ -268,11 +274,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F45C5DA61F205BC30082A753 /* InfoTableViewController.swift in Sources */,
 				F4F79B6B1F1F1213004FA614 /* DealsModel.swift in Sources */,
 				F4097B371F2001A700E4983A /* WatchlistCell.swift in Sources */,
 				F4958AA81F1FFEC900DAE7C0 /* WatchListTableViewController.swift in Sources */,
 				F4D1CCFD1F1EC34500C25713 /* GameDealsViewController.swift in Sources */,
 				F4F79B6D1F1F167E004FA614 /* CustomCell.swift in Sources */,
+				F45C5DA81F2060290082A753 /* InfoCustomCell.swift in Sources */,
 				F4D1CCFB1F1EC34500C25713 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

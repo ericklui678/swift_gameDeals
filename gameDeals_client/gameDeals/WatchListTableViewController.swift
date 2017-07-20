@@ -34,6 +34,8 @@ class WatchListTableViewController: UITableViewController {
     return true
   }
   
+  
+  
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "WatchlistCell") as! WatchlistCell
 //    cell.titleLabel.text = list[indexPath.row]["title"] as? String
@@ -50,6 +52,7 @@ class WatchListTableViewController: UITableViewController {
       
     }).resume()
     cell.accessoryType = .detailButton
+    cell.selectionStyle = .none
     return cell
   }
   
@@ -60,7 +63,17 @@ class WatchListTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-    print("accessory tapped")
+    performSegue(withIdentifier: "InfoSegue", sender: list[indexPath.row]["game_id"])
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    let nav = segue.destination as! UINavigationController
+    let infoVC = nav.topViewController as! InfoTableViewController
+    infoVC.game_id = sender! as? String
+  }
+  
+  @IBAction func unwindToWatchlist(segue: UIStoryboardSegue) {
+//    print("unwinding back")
   }
   
   func retrieveMyList() {
