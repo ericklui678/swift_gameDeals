@@ -33,10 +33,19 @@ class InfoTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCustomCell") as! InfoCustomCell
     cell.selectionStyle = .none
+    cell.priceLabel.text = ""
+    cell.retailPriceLabel.text = ""
+    cell.titleLabel.text = ""
     // Load images and titles asynchronously to prevent scroll lag
     DispatchQueue.main.async(execute: { () -> Void in
+      cell.priceLabel.textColor = UIColor(red: 0, green: 0.4, blue: 0, alpha: 1)
       cell.priceLabel.text = "$\((self.deals[indexPath.row] as! NSDictionary)["price"]! as! String)"
-      cell.retailPriceLabel.text = "$\((self.deals[indexPath.row] as! NSDictionary)["retailPrice"]! as! String)"
+      
+      let attributes = [NSAttributedStringKey.foregroundColor: UIColor.red]
+      let retailPrice = NSMutableAttributedString(string: "$\((self.deals[indexPath.row] as! NSDictionary)["retailPrice"]! as! String)", attributes: attributes)
+      retailPrice.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 2, range: NSMakeRange(0, retailPrice.length))
+      cell.retailPriceLabel?.attributedText = retailPrice
+      
       
       let storeID = Int(((self.deals[indexPath.row] as! NSDictionary)["storeID"] as! String))!
       cell.titleLabel.text = self.stores[storeID-1]["storeName"]! as? String
