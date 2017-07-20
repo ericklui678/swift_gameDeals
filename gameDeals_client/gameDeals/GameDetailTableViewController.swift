@@ -17,8 +17,8 @@ class GameDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(gameID!)
-        displayDetails()
         retrieveStores()
+        displayDetails()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -101,13 +101,27 @@ class GameDetailTableViewController: UITableViewController {
 
         // Configure the cell...
         DispatchQueue.main.async(execute: { () -> Void in
-            cell.salePriceLabel.text = (self.deals[indexPath.row] as! NSDictionary)["price"]! as! String
-            cell.currentPriceLabel.text = (self.deals[indexPath.row] as! NSDictionary)["retailPrice"]! as! String
+            cell.salePriceLabel.text = "$\((self.deals[indexPath.row] as! NSDictionary)["price"]! as! String)"
+            cell.currentPriceLabel.text = "$\((self.deals[indexPath.row] as! NSDictionary)["retailPrice"]! as! String)"
             
             let storeID = Int(Double((self.deals[indexPath.row] as! NSDictionary)["storeID"]! as! String)!)
             print(storeID)
             cell.titleLabel.text = (self.stores[storeID-1] as! NSDictionary)["storeName"]! as! String
+            
+            
+            // Swift 3
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "$\((self.deals[indexPath.row] as! NSDictionary)["retailPrice"]!)")
+            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
+            cell.currentPriceLabel?.attributedText = attributeString
 
+            
+            
+            
+            cell.salePriceLabel.textColor = UIColor(red: 0, green: 0.4, blue: 0, alpha: 1)
+            
+            cell.currentPriceLabel?.textColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
+            
+            
             // images
             let url = URL(string: "http://www.cheapshark.com/img/stores/banners/\(storeID-1).png")
             let data = try? Data(contentsOf: url!)
