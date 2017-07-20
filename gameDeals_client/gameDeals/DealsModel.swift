@@ -18,14 +18,14 @@ class DealsModel {
   }
   
   static func getMyList(completionHandler: @escaping(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
-    let url = URL(string: "http://localhost:8000")
+    let url = URL(string: "http://34.213.11.157/")
     let session = URLSession.shared
     let task = session.dataTask(with: url!, completionHandler: completionHandler)
     task.resume()
   }
   
   static func deleteGame(index: String, completionHandler: @escaping(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
-    if let urlToReq = URL(string: "http://localhost:8000/delete/" + index) {
+    if let urlToReq = URL(string: "http://34.213.11.157/delete/" + index) {
       var request = URLRequest(url: urlToReq)
       request.httpMethod = "POST"
       let session = URLSession.shared
@@ -35,7 +35,7 @@ class DealsModel {
   }
   
   static func addGame(game_id: String, imgURL: String, title: String, completionHandler: @escaping(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
-    if let urlToReq = URL(string: "http://localhost:8000/create") {
+    if let urlToReq = URL(string: "http://34.213.11.157/create") {
       var request = URLRequest(url: urlToReq)
       request.httpMethod = "POST"
       let bodyData = "game_id=\(game_id)&imgURL=\(imgURL)&title=\(title)"

@@ -9,19 +9,45 @@
 import Foundation
 import UIKit
 
-class GameDealsViewController: UITableViewController {
+class GameDealsViewController: UITableViewController, UISearchBarDelegate {
   
   var games = [NSDictionary]()
   var refresher: UIRefreshControl!
-
+  
+  @IBOutlet weak var searchBar: UISearchBar!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    searchBar.delegate = self
+    
     retrieveAllDeals()
     
     refresher = UIRefreshControl()
     refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
     refresher.addTarget(self, action: #selector(retrieveAllDeals), for: UIControlEvents.valueChanged)
     tableView.addSubview(refresher)
+  }
+  
+  override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    searchBar.endEditing(true)
+  }
+  
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    searchBar.endEditing(true)
+    var foundGames = [NSDictionary]()
+    for game in games {
+      let title = (game["title"]! as! String).lowercased()
+      let searchText = searchBar.text!.lowercased()
+      if title.contains(searchText) {
+        foundGames.append(game)
+      }
+    }
+    self.games = foundGames
+    tableView.reloadData()
+  }
+  
+  override var prefersStatusBarHidden: Bool {
+    return true
   }
   
   override func didReceiveMemoryWarning() {

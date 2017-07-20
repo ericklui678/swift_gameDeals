@@ -21,13 +21,17 @@ class WatchListTableViewController: UITableViewController {
     super.viewWillAppear(animated)
     retrieveMyList()
   }
-
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return list.count
+  }
+  
+  override var prefersStatusBarHidden: Bool {
+    return true
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -18,9 +18,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="NX1-40-v7f">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomCell" rowHeight="66" id="JBe-Wt-Nwg" customClass="CustomCell" customModule="gameDeals" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="66"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JBe-Wt-Nwg" id="5ts-i0-JRb">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
@@ -97,6 +102,9 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="All Deals" id="UGk-lL-VWf"/>
+                    <connections>
+                        <outlet property="searchBar" destination="NX1-40-v7f" id="yv4-YH-biK"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dzn-Nc-Ugk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -144,8 +152,8 @@
                                                 <constraint firstAttribute="width" constant="78" id="R72-TI-oSl"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIc-4Y-oGJ">
-                                            <rect key="frame" x="116" y="26" width="28.5" height="13.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIc-4Y-oGJ">
+                                            <rect key="frame" x="116" y="26" width="221" height="13.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -153,6 +161,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="PIc-4Y-oGJ" firstAttribute="centerY" secondItem="ihI-wV-aX7" secondAttribute="centerY" id="4pD-Li-xZC"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="PIc-4Y-oGJ" secondAttribute="trailing" constant="30" id="ZhS-vh-6XU"/>
                                         <constraint firstItem="PIc-4Y-oGJ" firstAttribute="leading" secondItem="yV1-ba-Saa" secondAttribute="trailing" constant="10" id="ebS-Xo-MZz"/>
                                         <constraint firstItem="yV1-ba-Saa" firstAttribute="centerY" secondItem="ihI-wV-aX7" secondAttribute="centerY" id="kX1-bQ-bxN"/>
                                         <constraint firstItem="yV1-ba-Saa" firstAttribute="leading" secondItem="ihI-wV-aX7" secondAttribute="leadingMargin" constant="20" id="oMe-XE-dxo"/>
