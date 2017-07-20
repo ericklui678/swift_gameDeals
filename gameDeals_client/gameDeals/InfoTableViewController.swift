@@ -61,6 +61,17 @@ class InfoTableViewController: UITableViewController {
     return cell
   }
   
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let url = URL(string: "http://www.cheapshark.com/redirect?dealID=\((deals[indexPath.row] as! NSDictionary)["dealID"]! as! String)")!
+    if UIApplication.shared.canOpenURL(url) {
+      UIApplication.shared.open(url, options: [:], completionHandler: nil)
+      //If you want handle the completion block than
+      UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+        print("Open url : \(success)")
+      })
+    }
+  }
+  
   func retrieveGameInfo() {
     DealsModel.getGameInfo(gameID: self.game_id!, completionHandler: {
       data, response, error in
@@ -70,6 +81,7 @@ class InfoTableViewController: UITableViewController {
           self.tableView.reloadData()
           DispatchQueue.main.async {
             self.navigationItem.title = (jsonResult["info"] as! NSDictionary)["title"]! as? String
+            self.tableView.reloadData()
           }
         }
       } catch {
