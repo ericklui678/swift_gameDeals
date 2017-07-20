@@ -198,7 +198,6 @@
                                             <rect key="frame" x="20" y="7" width="96" height="30"/>
                                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="Ia4-Wf-WYV"/>
                                                 <constraint firstAttribute="width" constant="96" id="Wqe-qh-FV6"/>
                                             </constraints>
                                         </imageView>
@@ -253,7 +252,13 @@
                             <outlet property="delegate" destination="s7h-On-qIq" id="Rwk-1K-Yak"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="gAU-Ed-PmA"/>
+                    <navigationItem key="navigationItem" id="gAU-Ed-PmA">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="Dgl-WF-QKO">
+                            <connections>
+                                <action selector="backButtonPressed:" destination="s7h-On-qIq" id="gjd-h7-qqb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GqA-LQ-Hx1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
