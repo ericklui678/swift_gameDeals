@@ -8,12 +8,14 @@
 
 import UIKit
 
-class GameDealsViewController: UITableViewController {
+class GameDealsViewController: UITableViewController, UISearchBarDelegate {
   
+  let searchBar = UISearchBar()
   var games = [NSDictionary]()
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    createSearchBar()
     retrieveAllDeals()
   }
 
@@ -21,6 +23,44 @@ class GameDealsViewController: UITableViewController {
     super.didReceiveMemoryWarning()
   }
   
+  
+  func createSearchBar(){
+    
+    searchBar.showsCancelButton = false
+    searchBar.placeholder = "Enter your search here!"
+    searchBar.delegate = self
+    searchBar.showsScopeBar = true
+    
+    self.navigationItem.titleView = searchBar
+  }
+    
+  func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        if searchBar.text == "" {
+            retrieveAllDeals()
+        }
+        else {
+         
+            DealsModel.searchGame(nameString: searchBar.text!, completionHandler: {
+                data, response, error in
+                do {
+                    if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as? [NSDictionary] {
+                        print(jsonResult)
+                        
+                        
+                        
+                        self.games = jsonResult
+//                        print(self.games)
+//                        DispatchQueue.main.async {
+//                            self.tableView.reloadData()
+//                        }
+                    }
+                } catch {
+                    print(error)
+                }
+            })
+        }
+  }
+    
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return games.count
   }
@@ -36,6 +76,9 @@ class GameDealsViewController: UITableViewController {
       // Load images and titles asynchronously to prevent scroll lag
       DispatchQueue.main.async(execute: { () -> Void in
         cell.thumbnail.image = UIImage(data: data!)
+        
+
+        
         cell.titleLabel?.text = self.games[indexPath.row]["title"] as? String
         
         cell.salePriceLabel.textColor = UIColor(red: 0, green: 0.4, blue: 0, alpha: 1)
@@ -44,7 +87,7 @@ class GameDealsViewController: UITableViewController {
         let attributes = [NSAttributedStringKey.foregroundColor: UIColor.red]
         let currPrice = NSMutableAttributedString(string: "$\(self.games[indexPath.row]["normalPrice"]!)", attributes: attributes)
         currPrice.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 2, range: NSMakeRange(0, currPrice.length))
-        cell.currentPriceLabel?.attributedText = currPrice
+        cell.currentPriceLabel?.text = self.games[indexPath.row]["normalPrice"] as? String
         
       })
       
@@ -68,6 +111,7 @@ class GameDealsViewController: UITableViewController {
       data, response, error in
       do {
         if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as? [NSDictionary] {
+          
           self.games = jsonResult
           DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -78,6 +122,13 @@ class GameDealsViewController: UITableViewController {
       }
     })
   }
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar.endEditing(true)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
 }
 
 

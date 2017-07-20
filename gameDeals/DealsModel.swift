@@ -15,4 +15,11 @@ class DealsModel {
     let task = session.dataTask(with: url!, completionHandler: completionHandler)
     task.resume()
   }
+
+    static func searchGame(nameString: String, completionHandler: @escaping(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
+        let url = URL(string: "http://www.cheapshark.com/api/1.0/games?title=\(nameString)")
+        let session = URLSession.shared
+        let task = session.dataTask(with: url!, completionHandler: completionHandler)
+        task.resume()
+    }
 }
