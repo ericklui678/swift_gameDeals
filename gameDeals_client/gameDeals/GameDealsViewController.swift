@@ -61,11 +61,24 @@ class GameDealsViewController: UITableViewController, UISearchBarDelegate {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomCell
     cell.selectionStyle = .none
-    URLSession.shared.dataTask(with: NSURL(string: games[indexPath.row]["thumb"] as! String)! as URL, completionHandler: { (data, response, error) -> Void in
+    
+//    print(games[indexPath.row]["thumb"])
+    
+    var url = NSURL(string: "")! as URL
+    
+    if NSURL(string: games[indexPath.row]["thumb"] as! String) == nil {
+      url = NSURL(string: "https://image.flaticon.com/icons/png/512/78/78299.png")! as URL
+    } else {
+      url = NSURL(string: games[indexPath.row]["thumb"] as! String)! as URL
+    }
+    
+    URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) -> Void in
+      
       if error != nil {
         print(error ?? "error")
         return
       }
+      
       // Load images and titles asynchronously to prevent scroll lag
       DispatchQueue.main.async(execute: { () -> Void in
         cell.thumbnail.image = UIImage(data: data!)
@@ -88,6 +101,14 @@ class GameDealsViewController: UITableViewController, UISearchBarDelegate {
       
     }).resume()
     return cell
+  }
+  
+  
+  func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
+    URLSession.shared.dataTask(with: url) {
+      (data, response, error) in
+      completion(data, response, error)
+      }.resume()
   }
   
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -152,5 +173,26 @@ class GameDealsViewController: UITableViewController, UISearchBarDelegate {
     })
   }
 }
+
+//extension UIImageView {
+//  func downloadedFrom(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {
+//    contentMode = mode
+//    URLSession.shared.dataTask(with: url) { (data, response, error) in
+//      guard
+//        let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+//        let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+//        let data = data, error == nil,
+//        let image = UIImage(data: data)
+//        else { return }
+//      DispatchQueue.main.async() { () -> Void in
+//        self.image = image
+//      }
+//      }.resume()
+//  }
+//  func downloadedFrom(link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
+//    guard let url = URL(string: link) else { return }
+//    downloadedFrom(url: url, contentMode: mode)
+//  }
+//}
 
 
