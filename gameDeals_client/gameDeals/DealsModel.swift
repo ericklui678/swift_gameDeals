@@ -32,7 +32,7 @@ class DealsModel {
   }
   
   static func getMyList(completionHandler: @escaping(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
-    let url = URL(string: "http://34.213.11.157/")
+    let url = URL(string: "https://gamedeals.herokuapp.com/")
     let session = URLSession.shared
     let task = session.dataTask(with: url!, completionHandler: completionHandler)
     task.resume()
