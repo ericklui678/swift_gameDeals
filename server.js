@@ -1,13 +1,27 @@
 var express = require('express'),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
-  port = 8000,
+  // port = 8000,
   app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json())
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-mongoose.connect('mongodb://localhost/gamedeals');
+
+app.set('port', (process.env.PORT || 8000))
+
+var uristring =
+process.env.MONGOLAB_URI ||
+process.env.MONGOHQ_URL ||
+'mongodb://heroku_t05dnrwd:la2ijp9nttr5t62skgipbcoh89@ds151163.mlab.com:51163/heroku_t05dnrwd'
+
+mongoose.connect(uristring, function (err, res) {
+  if (err) {
+    console.log('failed to connect to db');
+  } else {
+    console.log('Successfully db connection');
+  }
+})
 
 var Schema = mongoose.Schema;
 
@@ -43,6 +57,7 @@ app.post('/delete/:id', function(req, res){
     res.redirect('/')
   })
 })
-app.listen(port, function(){
-  console.log('running on', port);
-})
+
+var server = app.listen(app.get('port'), function(){
+  console.log("Node app is running on port", app.get('port'));
+});

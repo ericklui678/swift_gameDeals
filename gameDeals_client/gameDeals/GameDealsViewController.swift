@@ -147,7 +147,7 @@ class GameDealsViewController: UITableViewController, UISearchBarDelegate {
       data, response, error in
       do {
         if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as? [NSDictionary] {
-//          print(jsonResult)
+          print(jsonResult)
         }
       } catch {
         print(error)

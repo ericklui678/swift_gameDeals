@@ -39,7 +39,7 @@ class DealsModel {
   }
   
   static func deleteGame(index: String, completionHandler: @escaping(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
-    if let urlToReq = URL(string: "http://34.213.11.157/delete/" + index) {
+    if let urlToReq = URL(string: "https://gamedeals.herokuapp.com/" + index) {
       var request = URLRequest(url: urlToReq)
       request.httpMethod = "POST"
       let session = URLSession.shared
@@ -49,7 +49,8 @@ class DealsModel {
   }
   
   static func addGame(game_id: String, imgURL: String, title: String, completionHandler: @escaping(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
-    if let urlToReq = URL(string: "http://34.213.11.157/create") {
+    print(game_id, imgURL, title)
+    if let urlToReq = URL(string: "https://gamedeals.herokuapp.com/create") {
       var request = URLRequest(url: urlToReq)
       request.httpMethod = "POST"
       let bodyData = "game_id=\(game_id)&imgURL=\(imgURL)&title=\(title)"
